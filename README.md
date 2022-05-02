@@ -3,13 +3,6 @@
 這是一個使用express與Node.js打造的縮短網頁，可以取得縮短後的網址，用縮短後的網址可以瀏覽原網頁
 
 
-## Images 網頁圖片
-
-
-![image](https://github.com/PaulChen79/Restaurant-list/blob/29d741a4910d777e6b095d326a3f4d20e62a8d7b/public/screenshot/localhost_3000_noresult.png)
-![image](https://github.com/PaulChen79/Restaurant-List/blob/main/public/screenshot/localhost_3000_search_keywords=saba.png)
-
-
 ### Installing 安裝流程
 
 先將此專案Clone到主機的資料夾
