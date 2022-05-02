@@ -1,0 +1,24 @@
+const URL = require('../models/url')
+
+const getRandomCharacter = (array) => {
+  const index = Math.floor(Math.random() * array.length)
+  return array[index]
+}
+
+const ifUrlExist = (url) => {
+  URL.find({ shortURL: url })
+    .then(result => result ? true : false)
+    .catch(error => console.error(error))
+}
+
+const genShortURL = () => {
+  const code = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+  let shortURL = ''
+  for (let i = 0; i < 5; i++) {
+    shortURL += getRandomCharacter(code)
+  }
+  if (ifUrlExist(shortURL)) return genShortURL()
+  return shortURL
+}
+
+module.exports = { genShortURL }

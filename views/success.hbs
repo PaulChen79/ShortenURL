@@ -1,0 +1,19 @@
+<div class="input-group input-group-lg mb-3 mt-5">
+  <input type="text" class="form-control" id="shortURL" value="localhost:3000/{{shortUrl}}"
+    aria-label="Example text with button addon" aria-describedby="button-addon1">
+  <button class="btn btn-primary" type="button" onclick="copy()">copy</button>
+</div>
+</div>
+<div class="w-100 mt-4 mb-3 text-center">
+  <h3>成功縮短網址！按下copy去試試吧！</h3>
+</div>
+
+<script>
+  const copy = () => {
+    let shortURL = document.querySelector("#shortURL")
+    shortURL.select()
+    shortURL.setSelectionRange(0, 99999)
+    document.execCommand("copy")
+    alert('網址已經複製！')
+  }
+</script>
