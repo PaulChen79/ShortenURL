@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
     .catch(error => console.error(error))
   } else {
     req.flash('error_messages', '輸入的URL不符規格，請重新輸入！')
-    res.redirect('/')
+    res.render('index', { shortUrl: url })
   }
   
 })
