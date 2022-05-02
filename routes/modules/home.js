@@ -5,11 +5,15 @@ const { genShortURL } = require('../../utils/utils')
 const router = express.Router()
 
 
-router.get('/', (req, res) => {
-  res.render('index')
+router.get('/', (req, res, next) => {
+  try {
+    res.render('index')
+  } catch (error) {
+    next(error)
+  }
 })
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
   const url = req.body.url
   if(!url) {
     req.flash('error_messages', '請輸入想縮短的網址！')
@@ -23,12 +27,11 @@ router.post('/', (req, res) => {
       URL.create({ shortURL, originalURL: url })
         .then(() => res.render('success', { shortUrl: shortURL }))
     })
-    .catch(error => console.error(error))
+    .catch(error => next(error))
   } else {
     req.flash('error_messages', '輸入的URL不符規格，請重新輸入！')
     res.render('index', { shortUrl: url })
   }
-  
 })
 
 router.get('/:shortUrl', (req, res) => {
@@ -36,7 +39,7 @@ router.get('/:shortUrl', (req, res) => {
   URL.findOne({ shortURL: shortUrl })
     .lean()
     .then(result => res.redirect(result.originalURL))
-    .catch(error => console.error(error))
+    .catch(error => next(error))
 })
 
 module.exports = router
