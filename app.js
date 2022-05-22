@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require('express')
 const methodOverride = require('method-override')
 const exphbs = require('express-handlebars')
@@ -5,7 +6,6 @@ const session = require('express-session')
 const flash = require('connect-flash')
 const routes = require('./routes/index')
 require('./config/mongoose')
-require("dotenv").config()
 const app = express()
 const PORT = process.env.PORT || 3000
 
