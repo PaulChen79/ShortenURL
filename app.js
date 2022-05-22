@@ -16,12 +16,12 @@ app.use(methodOverride('_method'))
 app.use(session({ secret: 'SECRET', resave: false, saveUninitialized: false }))
 app.use(flash())
 app.use((req, res, next) => {
-	res.locals.error_messages = req.flash('error_messages')
-	next()
+  res.locals.error_messages = req.flash('error_messages')
+  next()
 })
 
 app.use(routes)
 
 app.listen(PORT, () => {
-	console.log(`Server is running on port: ${PORT}`)
+  console.log(`Server is running on port: ${PORT}`)
 })
