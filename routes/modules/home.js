@@ -22,7 +22,7 @@ router.post('/', async (req, res, next) => {
 			const result = await URL.findOne({ originalURL: url }).lean()
 			if (result) return res.render('success', { shortUrl: result.shortURL })
 			try {
-				const shortURL = genShortURL()
+				const shortURL = await genShortURL()
 				await URL.create({ shortURL, originalURL: url })
 				return res.render('success', { shortUrl: shortURL })
 			} catch (error) {
