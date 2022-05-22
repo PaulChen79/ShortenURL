@@ -1,7 +1,7 @@
 const express = require('express')
 const URL = require('../../models/url')
 const validUrl = require('valid-url')
-const { genShortURL } = require('../../utils/utils')
+const { checkAndReturnUrl } = require('../../utils/utils')
 const router = express.Router()
 
 router.get('/', async (req, res, next) => {
@@ -22,7 +22,7 @@ router.post('/', async (req, res, next) => {
 			if (validUrl.isUri(url)) {
 				const result = await URL.findOne({ originalURL: url }).lean()
 				if (result) return res.render('success', { shortUrl: result.shortURL })
-				const shortURL = genShortURL()
+				const shortURL = checkAndReturnUrl()
 				await URL.create({ shortURL, originalURL: url })
 				return res.render('success', { shortUrl: shortURL })
 			} else {

@@ -20,8 +20,12 @@ const genShortURL = () => {
 	for (let i = 0; i < 5; i++) {
 		shortURL += getRandomCharacter(code)
 	}
-	if (ifUrlExist(shortURL)) return genShortURL()
 	return shortURL
 }
 
-module.exports = { genShortURL }
+const checkAndReturnUrl = (url) => {
+	if (ifUrlExist(url)) return genShortURL()
+	return url
+}
+
+module.exports = { checkAndReturnUrl }
