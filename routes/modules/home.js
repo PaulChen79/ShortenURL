@@ -29,7 +29,7 @@ router.post('/', async (req, res, next) => {
 				res.render('index', {
 					shortUrl: url,
 					error_messages:
-						'輸入的URL不符規格，請重新輸入！網址是由https://或是http://為開頭唷',
+						'輸入的URL不符規格，請重新輸入！網址是由https://或是http://為開頭唷!',
 				})
 			}
 		} catch (error) {
