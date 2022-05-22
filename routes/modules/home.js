@@ -18,19 +18,21 @@ router.post('/', async (req, res, next) => {
 		req.flash('error_messages', '請輸入想縮短的網址！')
 		res.redirect('/')
 	} else {
-		if (validUrl.isUri(url)) {
-			const result = await URL.findOne({ originalURL: url }).lean()
-			if (result) return res.render('success', { shortUrl: result.shortURL })
-			try {
-				const shortURL = await genShortURL()
+		try {
+			if (validUrl.isUri(url)) {
+				const result = await URL.findOne({ originalURL: url }).lean()
+				if (result) return res.render('success', { shortUrl: result.shortURL })
+				const shortURL = genShortURL()
 				await URL.create({ shortURL, originalURL: url })
 				return res.render('success', { shortUrl: shortURL })
-			} catch (error) {
-				next(error)
+			} else {
+				res.render('index', {
+					shortUrl: url,
+					error_messages: '輸入的URL不符規格，請重新輸入！',
+				})
 			}
-		} else {
-			req.flash('error_messages', '輸入的URL不符規格，請重新輸入！')
-			res.render('index', { shortUrl: url })
+		} catch (error) {
+			next(error)
 		}
 	}
 })
