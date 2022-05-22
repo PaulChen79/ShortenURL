@@ -6,5 +6,4 @@ const router = express.Router()
 router.use('/', home)
 router.use('/', errorHandler)
 
-
 module.exports = router
