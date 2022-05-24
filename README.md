@@ -17,10 +17,16 @@ git clone https://github.com/PaulChen79/ShortenURL.git
 npm install
 ```
 
+下載完成後設定環境變數檔案.env，在檔案裡設定你的MongoDB URI
+
+```
+MONGODB_URI = <Use your mongoDB uri to connect to your DB>
+```
+
 下載完成後執行add.js檔案
 
 ```
-npm run dev
+npm start
 ```
 
 如果ternimal有出現 "Server is running on port: 3000" 字樣，即可在 http://localhost:3000 看到此網頁
